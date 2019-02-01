@@ -11,13 +11,12 @@ namespace MusicPlayer
     {
         const int MIN_VOLUME = 0;
         const int MAX_VOLUME = 100;
-
         private bool _isLocked;
-
-        private bool _isPlaying;
-         
-
+        private bool _isPlaying;       
         private int _volume;
+        private ISkin Skin;
+
+
         public int Volume
         {
             get
@@ -77,7 +76,7 @@ namespace MusicPlayer
             _isPlaying = true;
             for (int i = 0; i < Songs.Count; i++)
             {
-                Console.WriteLine($"Player is playing: {Songs[i].Name}, duration: {Songs[i].Duration}");
+                Skin.Render($"Player is playing: {Songs[i].Name}, duration: {Songs[i].Duration}");
                 System.Threading.Thread.Sleep(1000);
             }
         }
@@ -91,17 +90,20 @@ namespace MusicPlayer
             }
             _isPlaying = false;
             Console.WriteLine("Player has stopped");
+            Skin.Render("Stopped playing"); 
         }
 
         public void Locked()
         {
             _isLocked = true;
             Console.WriteLine("Player is locked");
+            Skin.Render("player is locked");
         }
         public void Unlock()
         {
             _isLocked = false;
             Console.WriteLine("Player is unlocked");
+            Skin.Render("player is unlocked");
         }
 
         public void Add(params Song[] songArr)
@@ -118,13 +120,8 @@ namespace MusicPlayer
 
         public void Sort()
         {
-
             Songs.Sort();
-
-
         }
         
-
-
     }
 }
