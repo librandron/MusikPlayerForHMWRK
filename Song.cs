@@ -6,24 +6,19 @@ using System.Threading.Tasks;
 
 namespace MusicPlayer
 {
-    public class Song : IComparable
+    public class Song
     {
         public int Duration;
         public string Name;
         public Artist Artist;
         public Album Album;
-
-
-        public int CompareTo(object obj)
+        public enum Genres
         {
-            return this.Name?.CompareTo((obj as Song).Name) ?? 0;
-            
+            Classic = 0b00000001,
+            Reggae = 0b0000010,
+            Electro = 0b00000100
         }
 
-        public static string SongCut(this string s)
-        {
-            var cutThis = String.Concat(s);
-            return cutThis;
-        }
+
     }
 }
